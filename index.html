@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Surat Rahasia Berlapis</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #fff4ec, #fde8e8);
+        background-attachment: fixed;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Partikel love samar di background */
+      .bg-heart {
+        position: absolute;
+        font-size: 18px;
+        color: rgba(255, 107, 129, 0.15);
+        animation: float 8s linear infinite;
+        z-index: 0;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-20px) rotate(10deg);
+        }
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+      }
+
+      .card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(6px);
+        border-radius: 25px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        padding: 25px 30px;
+        max-width: 420px;
+        text-align: center;
+        margin: 15px 0;
+        display: none;
+        animation: fadeIn 0.6s ease forwards;
+        position: relative;
+        z-index: 10;
+      }
+      .card.active {
+        display: block;
+      }
+      h2 {
+        margin-top: 0;
+        color: #e46a5e;
+        font-size: 1.4rem;
+      }
+      p {
+        line-height: 1.7;
+        font-size: 1rem;
+        color: #444;
+        white-space: pre-line;
+      }
+      button {
+        background-color: #e46a5e;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        margin-top: 15px;
+        border-radius: 12px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, background 0.3s ease;
+      }
+      button:hover {
+        background-color: #c95449;
+        transform: translateY(-2px);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Animasi hati jatuh */
+      .heart {
+        position: fixed;
+        top: -10px;
+        font-size: 20px;
+        color: #ff6b81;
+        animation: fall linear forwards;
+        z-index: 5;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background hearts -->
+    <script>
+      for (let i = 0; i < 25; i++) {
+        const bgHeart = document.createElement("div");
+        bgHeart.classList.add("bg-heart");
+        bgHeart.innerHTML = "❤️";
+        bgHeart.style.left = Math.random() * 100 + "vw";
+        bgHeart.style.top = Math.random() * 100 + "vh";
+        bgHeart.style.fontSize = 10 + Math.random() * 20 + "px";
+        bgHeart.style.animationDelay = Math.random() * 8 + "s";
+        document.body.appendChild(bgHeart);
+      }
+    </script>
+
+    <div class="card active" id="step1">
+      <h2>🔒 Pesan Rahasia #1</h2>
+      <p>Hai sayangku 💌  
+      Ini ada sesuatu yang aku siapin khusus buat kamu.  
+      Baca pelan-pelan yaa, satu per satu ❤️</p>
+      <button onclick="nextStep(2)">Buka Pesan ➡️</button>
+    </div>
+
+    <div class="card" id="step2">
+      <h2>🔒 Pesan Rahasia #2</h2>
+      <p>Tarik napas pelan-pelan...  
+      Bayangin aku lagi senyum ke kamu dari jauh 🥹  
+      Rasain kalau aku ada di dekatmu sekarang 💛</p>
+      <button onclick="nextStep(3)">Buka Pesan ➡️</button>
+    </div>
+
+    <div class="card" id="step3">
+      <h2>😌 Pesan Rahasia #3</h2>
+      <p>Tutup mata sebentar, 3 detik aja.  
+      Bayangin kita ketemu, ketawa bareng,  
+      dan kamu aku peluk erat kayak nggak mau lepas 🤍</p>
+      <button onclick="nextStep(4)">Pesan Terakhir ➡️</button>
+    </div>
+
+    <div class="card" id="step4">
+      <h2>❤️ Pesan Rahasia Terakhir ❤️</h2>
+      <p>
+        Sayang, aku cuma mau bilang...  
+        Aku sayang banget sama kamu.  
+        Kamu itu alasanku semangat tiap hari,  
+        alasanku terus berjuang, alasanku mau jadi lebih baik.  
+
+        Maaf ya kalau kadang aku bikin kamu sedih,  
+        marah, atau kecewa. Aku belajar dari semua itu,  
+        supaya bisa jadi pasangan yang bikin kamu bahagia.  
+
+        Kamu itu rumahku, tempat aku pulang,  
+        dan aku nggak akan pernah berhenti cinta kamu.  
+        Aku kangen banget sama kamu.  
+        Piuuuuu sayangkuuuu ❤️❤️❤️
+      </p>
+    </div>
+
+    <script>
+      function nextStep(step) {
+        document
+          .querySelectorAll(".card")
+          .forEach((c) => c.classList.remove("active"));
+        document.getElementById("step" + step).classList.add("active");
+        if (step === 4) startHearts();
+      }
+
+      function startHearts() {
+        setInterval(() => {
+          const heart = document.createElement("div");
+          heart.classList.add("heart");
+          heart.innerHTML = "❤️";
+          heart.style.left = Math.random() * window.innerWidth + "px";
+          heart.style.animationDuration = 3 + Math.random() * 2 + "s";
+          document.body.appendChild(heart);
+          setTimeout(() => heart.remove(), 5000);
+        }, 300);
+      }
+    </script>
+  </body>
+</html>
